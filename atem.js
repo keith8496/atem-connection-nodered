@@ -39,12 +39,12 @@ module.exports = function (RED) {
     });
 
     //Level change events
-    connection.addLevelChangeCallback((state, pathToChange) => {
+    connection.addLevelChangeCallback((levels, input) => {
       node.send({
         topic: "levelChange",
         payload: {
-          state,
-          pathToChange
+          levels,
+          input
         }
       });
     });

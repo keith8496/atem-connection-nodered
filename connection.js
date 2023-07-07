@@ -185,8 +185,8 @@ module.exports = function (RED) {
                 }
             }
         });
-        atem.on("levelChanged", (state, pathToChange) => {
-            levelChangeCallbacks.forEach((func) => func(state, pathToChange));
+        atem.on("levelChanged", (levels, input) => {
+            levelChangeCallbacks.forEach((func) => func(levels, input));
         });
         atem.on("receivedCommand", (command) => {
             commandCallbacks.forEach((func) => func(command));
