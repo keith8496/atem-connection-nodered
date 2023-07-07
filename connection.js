@@ -186,7 +186,6 @@ module.exports = function (RED) {
             }
         });
         atem.on("levelChanged", (state, pathToChange) => {
-            node.warn("levelChanged"+pathToChange);
             levelChangeCallbacks.forEach((func) => func(state, pathToChange));
         });
         atem.on("receivedCommand", (command) => {
