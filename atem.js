@@ -38,6 +38,17 @@ module.exports = function (RED) {
       });
     });
 
+    //Level change events
+    connection.addLevelChangeCallback((state, pathToChange) => {
+      node.send({
+        topic: "levelChange",
+        payload: {
+          state,
+          pathToChange
+        }
+      });
+    });
+
     //Command events
     connection.addCommandCallback((command) => {
       node.send({

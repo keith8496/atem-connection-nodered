@@ -32,6 +32,10 @@ module.exports = function (RED) {
         this.addStateChangeCallback = function (func) { // func(state, pathToChange)
             stateChangeCallbacks.push(func);
         }
+        var levelChangeCallbacks = [];
+        this.addLevelChangeCallback = function (func) { // func(state, pathToChange)
+            levelChangeCallbacks.push(func);
+        }
         var commandCallbacks = [];
         this.addCommandCallback = function (func) { // func(command)
             commandCallbacks.push(func);
@@ -180,6 +184,9 @@ module.exports = function (RED) {
                     }
                 }
             }
+        });
+        atem.on("levelChanged", (state, pathToChange) => {
+            levelChangeCallbacks.forEach((func) => func(state, pathToChange));
         });
         atem.on("receivedCommand", (command) => {
             commandCallbacks.forEach((func) => func(command));
