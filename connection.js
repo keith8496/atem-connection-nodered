@@ -81,6 +81,12 @@ module.exports = function (RED) {
                 }
 
                 //We don't callback as we don't know if the atem responded in this mode
+                // yes we do
+                callback(true, {
+                    func: atem[payload.function],
+                    data: atem.state
+                });
+                
             }
             //Get the state of the ATEM
             else if(funcName == "getState") {
